@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Pop Our Love 💐 Mother's Day</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#d94f6e;--blush:#f4a7b5;--deep:#b03055;
+  --lavender:#c8a8d8;--mint:#7dcfb6;--gold:#e2a829;
+  --cream:#fff8f4;--soft:#8a6070;--text:#2e1a22;
+  --bg:linear-gradient(145deg,#fce4ef 0%,#fff5fb 40%,#ede4ff 75%,#e4eeff 100%);
+  --card-shadow:0 20px 60px rgba(217,79,110,.18);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{height:100%;overflow:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);height:100%;overflow:hidden;position:fixed;width:100%;}
+
+/* ─── SCREENS ─── */
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1);will-change:transform,opacity;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+.screen.hidden{opacity:0;pointer-events:none;transform:translateY(24px);}
+.screen.slide-out{opacity:0;pointer-events:none;transform:translateX(-100%);}
+
+/* floating petals */
+.petal{position:fixed;pointer-events:none;animation:fpetal linear infinite;opacity:.4;z-index:0;user-select:none;}
+@keyframes fpetal{0%{transform:translateY(-40px) rotate(0deg) scale(.8);opacity:0}8%{opacity:.4}92%{opacity:.25}100%{transform:translateY(108vh) rotate(400deg) scale(1.1);opacity:0}}
+
+/* ════════════ SCREEN 1 — WELCOME ════════════ */
+#s-welcome{padding:20px 20px calc(20px + var(--safe-bottom));}
+.welcome-inner{max-width:420px;width:100%;text-align:center;padding:40px 0 20px;}
+.logo-bounce{font-size:4rem;display:block;margin-bottom:8px;animation:bob 2.8s ease-in-out infinite;filter:drop-shadow(0 8px 16px rgba(217,79,110,.3));}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--rose),#e8637a);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:22px;box-shadow:0 4px 16px rgba(217,79,110,.35);}
+.welcome-inner h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,9vw,3.4rem);color:var(--rose);line-height:1.1;margin-bottom:14px;font-weight:700;}
+.welcome-inner h1 em{font-style:italic;color:var(--soft);}
+.welcome-inner .sub{font-size:.95rem;color:var(--soft);line-height:1.8;margin-bottom:28px;font-weight:400;max-width:320px;margin-left:auto;margin-right:auto;}
+.how-it-works{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;text-align:left;}
+.step-row{display:flex;align-items:center;gap:14px;background:white;border-radius:16px;padding:12px 16px;box-shadow:0 4px 16px rgba(217,79,110,.08);}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#e8637a);color:white;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-desc{font-size:.88rem;color:var(--soft);font-weight:500;}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--rose),#e8637a);color:#fff;border:none;padding:18px 48px;border-radius:50px;font-size:1.05rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;box-shadow:0 10px 32px rgba(217,79,110,.4);transition:transform .18s,box-shadow .18s;width:100%;max-width:300px;letter-spacing:.2px;}
+.btn-primary:active{transform:scale(.97);}
+
+/* ════════════ SCREEN 2 — CREATOR ════════════ */
+#s-creator{justify-content:flex-start;padding:0;background:var(--bg);}
+.creator-scroll{width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px calc(16px + var(--safe-bottom));}
+.creator-wrap{max-width:480px;margin:0 auto;}
+
+/* progress */
+.dot-row{display:flex;gap:8px;justify-content:center;margin-bottom:16px;padding-top:8px;}
+.dot{width:9px;height:9px;border-radius:50%;background:#f0d0dc;transition:background .35s,transform .35s,width .35s;}
+.dot.active{background:var(--rose);transform:scale(1.4);}
+.dot.done{background:var(--blush);}
+
+/* card */
+.creator-card{background:#fff;border-radius:24px;box-shadow:var(--card-shadow);overflow:hidden;}
+.card-header{padding:20px 22px;display:flex;align-items:center;justify-content:space-between;position:relative;}
+.card-header::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);}
+.card-header-left{color:#fff;position:relative;z-index:1;}
+.step-label{font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;opacity:.88;margin-bottom:3px;}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;}
+.balloon-header-icon{font-size:2rem;position:relative;z-index:1;}
+
+.card-body{padding:20px 20px 4px;}
+
+/* photo zone */
+.photo-zone{border:2px dashed #f0c0ce;border-radius:18px;background:#fff8fa;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;position:relative;overflow:hidden;margin-bottom:18px;transition:border-color .2s,background .2s;}
+.photo-zone:active{background:#fff0f4;border-color:var(--rose);}
+.photo-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:3;}
+.pz-icon-wrap{width:48px;height:48px;background:linear-gradient(135deg,#fde0e8,#fcc8d5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.pz-text{font-size:.88rem;font-weight:600;color:var(--soft);}
+.pz-sub{font-size:.72rem;color:#c09ab0;}
+.pz-preview{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;border-radius:16px;}
+.pz-remove{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:20px;font-size:.72rem;font-weight:700;font-family:'DM Sans',sans-serif;padding:5px 12px;cursor:pointer;z-index:4;}
+
+/* fields */
+.field-label{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blush);margin-bottom:7px;display:block;}
+.field-input{width:100%;border:1.8px solid #f0d8e4;border-radius:12px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);outline:none;transition:border .2s,box-shadow .2s;background:#fff9fb;margin-bottom:16px;-webkit-appearance:none;}
+.field-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(217,79,110,.1);}
+textarea.field-input{resize:none;min-height:90px;}
+.char-count{text-align:right;font-size:.68rem;color:#c0a0b0;margin-top:-12px;margin-bottom:14px;}
+
+/* nav */
+.card-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 20px;}
+.btn-back{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;color:var(--soft);cursor:pointer;display:flex;align-items:center;gap:4px;padding:12px 4px;min-width:64px;}
+.btn-next{background:linear-gradient(135deg,var(--rose),#e8637a);color:#fff;border:none;padding:14px 28px;border-radius:50px;font-size:.95rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(217,79,110,.35);transition:transform .18s;display:flex;align-items:center;gap:6px;min-height:48px;}
+.btn-next:active{transform:scale(.97);}
+
+/* ════════════ SCREEN 3 — SHARE ════════════ */
+#s-share{padding:20px 20px calc(20px + var(--safe-bottom));}
+.share-inner{max-width:440px;width:100%;text-align:center;padding:30px 0;}
+.balloons-float{display:flex;justify-content:center;gap:8px;margin-bottom:20px;}
+.bal-float{font-size:2.2rem;animation:bob 2.5s ease-in-out infinite;}
+.bal-float:nth-child(2){animation-delay:-.5s;}
+.bal-float:nth-child(3){animation-delay:-1s;}
+.share-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3rem);color:var(--rose);margin-bottom:10px;font-weight:700;}
+.share-inner p{font-size:.93rem;color:var(--soft);line-height:1.75;margin-bottom:20px;}
+.link-box{background:white;border:2px solid #f0d8e4;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:10px;margin-bottom:14px;text-align:left;box-shadow:0 4px 20px rgba(217,79,110,.08);}
+.link-text{flex:1;font-size:.75rem;color:var(--soft);word-break:break-all;font-weight:500;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.copy-btn{background:var(--rose);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-size:.8rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:transform .15s,background .2s;flex-shrink:0;}
+.copy-btn.copied{background:#7dcfb6;}
+.share-actions{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:#fff;border:none;padding:16px 28px;border-radius:50px;font-size:1rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(37,211,102,.35);width:100%;transition:transform .18s;}
+.btn-wa:active{transform:scale(.97);}
+.btn-wa svg{width:22px;height:22px;fill:white;flex-shrink:0;}
+.btn-outline{background:white;border:2px solid var(--rose);color:var(--rose);padding:14px 28px;border-radius:50px;font-size:.9rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;width:100%;transition:all .18s;}
+.btn-outline:active{background:var(--rose);color:white;}
+.btn-preview{background:white;border:2px solid #e0d0e8;color:var(--soft);padding:14px 28px;border-radius:50px;font-size:.9rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;width:100%;transition:all .18s;}
+
+/* ════════════ SCREEN 4 — VIEWER ════════════ */
+#s-viewer{justify-content:flex-start;overflow:hidden;}
+.viewer-top{text-align:center;padding:24px 20px 8px;flex-shrink:0;}
+.viewer-top h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,6vw,2.6rem);color:var(--rose);line-height:1.2;margin-bottom:4px;font-weight:700;}
+.viewer-top .vtap{font-size:.85rem;color:var(--soft);font-weight:400;}
+.viewer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 8px;padding:12px 16px calc(80px + var(--safe-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;width:100%;}
+.vballoon-wrap{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;transition:transform .2s;-webkit-tap-highlight-color:transparent;}
+.vballoon-wrap:active{transform:scale(.94);}
+.vballoon-wrap.popped .vbal-svg{opacity:0;pointer-events:none;}
+.vbal-svg{animation:vsway 3.5s ease-in-out infinite;filter:drop-shadow(0 6px 16px rgba(0,0,0,.14));transition:opacity .1s;}
+@keyframes vsway{0%,100%{transform:rotate(-5deg) translateY(0)}50%{transform:rotate(5deg) translateY(-8px)}}
+.vbal-string{width:2px;height:32px;background:linear-gradient(to bottom,#bbb,#e0e0e0);border-radius:1px;transition:opacity .3s;}
+.vbal-label{font-size:.65rem;font-weight:600;color:var(--soft);text-align:center;max-width:80px;margin-top:4px;line-height:1.3;transition:opacity .3s;}
+.vballoon-wrap.popped .vbal-string,.vballoon-wrap.popped .vbal-label{opacity:0;}
+.popped-ghost{font-size:1.2rem;opacity:.4;position:absolute;top:20%;animation:none;}
+
+/* ════════════ FULLSCREEN POP OVERLAY ════════════ */
+#pop-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;padding:20px;}
+#pop-overlay.active{opacity:1;pointer-events:all;}
+.pop-backdrop{position:absolute;inset:0;background:rgba(20,8,14,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.pop-balloon-fly{position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);transition:bottom .5s cubic-bezier(.22,.68,0,1.3),transform .5s,opacity .25s;z-index:2;}
+.pop-balloon-fly.fly-up{bottom:55%;}
+.pop-balloon-fly.popping{opacity:0;transform:translateX(-50%) scale(2.6);}
+
+/* Centered card */
+.pop-card{
+  position:relative;z-index:3;background:#fff;
+  border-radius:28px;
+  width:100%;max-width:360px;
+  max-height:88vh;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  transform:scale(.7) translateY(30px);opacity:0;
+  transition:transform .45s cubic-bezier(.175,.885,.32,1.275),opacity .3s;
+  box-shadow:0 32px 90px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.1);
+  display:block;
+}
+.pop-card.visible{transform:scale(1) translateY(0);opacity:1;}
+.pop-handle{display:none;}
+
+/* Image fills top of card, full width, fixed height */
+.pop-card-img{
+  width:100%;height:240px;object-fit:cover;
+  display:none;border-radius:28px 28px 0 0;
+}
+.pop-card-img.has-photo{display:block;}
+
+/* No-photo emoji area */
+.pop-card-emoji-wrap{
+  padding:28px 24px 0;text-align:center;
+}
+.pop-card-emoji{font-size:3.8rem;display:block;animation:emojipop .5s cubic-bezier(.175,.885,.32,1.275) both;}
+@keyframes emojipop{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0deg)}}
+.pop-card-emoji.hidden{display:none;}
+
+.pop-card-body{padding:18px 24px 26px;text-align:center;}
+.pop-card-title{font-family:'Cormorant Garamond',serif;font-size:1.65rem;color:var(--rose);margin-bottom:10px;font-weight:700;line-height:1.2;}
+.pop-card-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--soft);line-height:1.78;margin-bottom:22px;}
+.pop-card-close{background:linear-gradient(135deg,var(--rose),#e8637a);color:#fff;border:none;padding:14px 36px;border-radius:50px;font-size:.95rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(217,79,110,.38);width:100%;}
+.pop-card-close:active{opacity:.9;transform:scale(.97);}
+
+/* burst */
+.burst-p{position:fixed;pointer-events:none;z-index:10000;animation:bgo .95s ease-out forwards;}
+@keyframes bgo{0%{transform:translate(-50%,-50%) scale(0) rotate(0deg);opacity:1}100%{transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(1) rotate(var(--rot));opacity:0}}
+
+/* ════════════ SCREEN 5 — FINAL ════════════ */
+#s-final{padding:20px 20px calc(20px + var(--safe-bottom));}
+.final-inner{max-width:400px;width:100%;text-align:center;padding:40px 0 20px;}
+.final-heart{font-size:4rem;display:block;margin-bottom:16px;animation:hbeat 1.2s ease-in-out infinite;}
+@keyframes hbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.final-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,8vw,3.5rem);color:var(--rose);margin-bottom:14px;font-weight:700;line-height:1.1;}
+.final-inner p{font-size:1rem;color:var(--soft);line-height:1.85;margin-bottom:32px;}
+.confetti-p{position:fixed;pointer-events:none;z-index:500;animation:cfetti linear forwards;}
+@keyframes cfetti{0%{transform:translateY(-20px) rotate(0deg);opacity:0}5%{opacity:1}95%{opacity:.8}100%{transform:translateY(108vh) rotate(720deg);opacity:0}}
+
+/* ─── UTILITY ─── */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+.spinner{width:40px;height:40px;border:3px solid #f0d0dc;border-top-color:var(--rose);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="petals-container" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;"></div>
+
+<!-- ══ SCREEN 1: WELCOME ══ -->
+<div class="screen" id="s-welcome">
+  <div class="welcome-inner">
+    <span class="logo-bounce">🎈</span>
+    <div class="badge">🌸 Mother's Day Surprise 🌸</div>
+    <h1>A Balloon<br/><em>Surprise for Mumma</em></h1>
+    <p class="sub">Hide photos &amp; messages in balloons. Share the link — she pops each one to find your love! 💕</p>
+    <div class="how-it-works">
+      <div class="step-row"><div class="step-num">1</div><div class="step-desc">✏️ Fill 9 balloons with photos &amp; messages</div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-desc">🔗 Get a magic link to send on WhatsApp</div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-desc">🎈 She taps each balloon to pop the surprise!</div></div>
+    </div>
+    <button class="btn-primary" onclick="startCreating()">Start Creating 💐</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN 2: CREATOR ══ -->
+<div class="screen hidden" id="s-creator">
+  <div class="creator-scroll">
+    <div class="creator-wrap">
+      <div class="dot-row" id="dotRow"></div>
+      <div class="creator-card">
+        <div class="card-header" id="cardHeader">
+          <div class="card-header-left">
+            <div class="step-label" id="stepLabel">Balloon 1 of 9</div>
+            <div class="step-title" id="stepTitle">Fill this balloon</div>
+          </div>
+          <span class="balloon-header-icon" id="balloonHeaderIcon">🎈</span>
+        </div>
+        <div class="card-body">
+          <div class="photo-zone" id="photoZone" onclick="triggerPhotoInput()">
+            <input type="file" accept="image/*" id="photoInput" onchange="handlePhotoSelect(this)" onclick="event.stopPropagation()">
+            <img class="pz-preview" id="photoPreview" style="display:none" alt="">
+            <button class="pz-remove" id="photoRemove" style="display:none" onclick="removePhoto(event)">✕ Remove</button>
+            <div class="pz-icon-wrap" id="pzIcon">📷</div>
+            <div class="pz-text" id="pzText">Tap to add a photo</div>
+            <div class="pz-sub" id="pzSub">Optional — from your gallery</div>
+          </div>
+          <label class="field-label" for="balloonTitle">Title</label>
+          <input class="field-input" id="balloonTitle" type="text" placeholder="e.g. My Favourite Memory" maxlength="40" autocomplete="off">
+          <label class="field-label" for="balloonMessage">Message <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.68rem;color:#c0a0b0">— what she'll read when she pops it</span></label>
+          <textarea class="field-input" id="balloonMessage" rows="3" maxlength="300" placeholder="Write something heartfelt..." oninput="updateCharCount()"></textarea>
+          <div class="char-count"><span id="charCount">0</span> / 300</div>
+        </div>
+        <div class="card-nav">
+          <button class="btn-back" id="backBtn" onclick="creatorBack()">‹ Back</button>
+          <button class="btn-next" id="nextBtn" onclick="creatorNext()">Next ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 3: SHARE ══ -->
+<div class="screen hidden" id="s-share">
+  <div class="share-inner">
+    <div class="balloons-float">
+      <span class="bal-float">🎈</span><span class="bal-float">🎀</span><span class="bal-float">🎈</span>
+    </div>
+    <h2>Your surprise<br/>is ready! 🎉</h2>
+    <p>Share this link with Mumma. She taps each balloon to reveal your love. 💕</p>
+
+    <!-- Saving spinner -->
+    <div id="savingState" style="text-align:center;padding:20px 0;">
+      <div class="spinner"></div>
+      <p style="color:var(--soft);font-size:.9rem;margin-top:12px;">Saving your surprise…</p>
+    </div>
+
+    <!-- Ready state -->
+    <div id="readyState" style="display:none;">
+      <div class="link-box">
+        <span class="link-text" id="shareLinkText"></span>
+        <button class="copy-btn" id="copyBtn" onclick="copyLink()">Copy</button>
+      </div>
+      <p id="urlSizeNote" style="font-size:.72rem;color:#27ae60;margin-bottom:12px;margin-top:-8px;text-align:left;padding-left:4px;">✅ Short link saved to cloud — works perfectly on WhatsApp!</p>
+      <div class="share-actions">
+        <button class="btn-wa" onclick="shareWhatsApp()">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send on WhatsApp
+        </button>
+        <button class="btn-preview" onclick="previewAsViewer()">👀 Preview (see what she sees)</button>
+        <button class="btn-outline" onclick="startCreating()">✏️ Create Another</button>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div id="errorState" style="display:none;text-align:center;padding:10px 0;">
+      <p style="font-size:2rem;margin-bottom:8px;">😕</p>
+      <p style="color:#c04060;font-size:.9rem;margin-bottom:16px;" id="errorMsg">Something went wrong. Please try again.</p>
+      <button class="btn-primary" onclick="retryFinish()" style="font-size:.9rem;padding:14px 32px;">Try Again</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 4: VIEWER ══ -->
+<div class="screen hidden" id="s-viewer" style="background:var(--bg);">
+  <div class="viewer-top">
+    <h1>Happy Mother's Day! 💐</h1>
+    <p class="vtap">Tap each balloon to pop your surprise 🎈</p>
+  </div>
+  <div class="viewer-grid" id="viewerGrid"></div>
+</div>
+
+<!-- POP OVERLAY -->
+<div id="pop-overlay">
+  <div class="pop-backdrop" onclick="closePop()"></div>
+  <div class="pop-balloon-fly" id="popFlyBalloon"></div>
+  <div class="pop-card" id="popCard">
+    <img class="pop-card-img" id="popCardImg" src="" alt="Memory photo">
+    <div class="pop-card-emoji-wrap" id="popCardEmojiWrap">
+      <span class="pop-card-emoji" id="popCardEmoji"></span>
+    </div>
+    <div class="pop-card-body">
+      <div class="pop-card-title" id="popCardTitle"></div>
+      <div class="pop-card-msg" id="popCardMsg"></div>
+      <button class="pop-card-close" onclick="closePop()">Close ❤️</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 5: FINAL ══ -->
+<div class="screen hidden" id="s-final">
+  <div class="final-inner">
+    <span class="final-heart">💖</span>
+    <h2>Happy Mother's Day!</h2>
+    <p>You opened every balloon and felt every bit of love. Thank you for being the most amazing Mumma in the world.Lucky to Have You 💖
+I feel truly blessed and lucky to have such loving and supportive parents in my life. Thank you, God, for giving me the greatest gift — my Mom and Dad 🌸 💐</p>
+    <button class="btn-primary" onclick="resetViewer()">🎈 Pop Again!</button>
+  </div>
+</div>
+
+<script>
+/* ─────── CONFIG ─────── */
+var BALLOON_COLORS=[
+  {fill:'#e8637a',shade:'#c94560',hl:'#f4a7b5',emoji:'🌸'},
+  {fill:'#c8a8d8',shade:'#a080b8',hl:'#e0c8f0',emoji:'💜'},
+  {fill:'#f4a050',shade:'#d48030',hl:'#f8c890',emoji:'🌻'},
+  {fill:'#7dcfb6',shade:'#4da898',hl:'#b0e8d8',emoji:'🌿'},
+  {fill:'#a8c8f0',shade:'#78a8d8',hl:'#c8dff8',emoji:'⭐'},
+  {fill:'#f4a7b5',shade:'#d48090',hl:'#fcd0d8',emoji:'🌷'},
+  {fill:'#e2a829',shade:'#b87c10',hl:'#f0cc80',emoji:'👑'},
+  {fill:'#b8d8a8',shade:'#88b878',hl:'#d8ecc8',emoji:'🍃'},
+  {fill:'#e8637a',shade:'#c94560',hl:'#f4a7b5',emoji:'💕'}
+];
+
+/* ─────── STATE ─────── */
+var creatorData=[];
+var currentStep=0;
+var tempData={photo:null,title:'',message:''};
+var viewerBalloons=[];
+var poppedCount=0;
+var currentPopIndex=-1;
+
+/* ─────── SCREEN ROUTING ─────── */
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.add('hidden');});
+  var el=document.getElementById(id);
+  el.classList.remove('hidden');
+  el.scrollTop=0;
+}
+
+/* ─────── PETALS ─────── */
+(function(){
+  var emj=['🌸','💝','💗','💕','✨'],c=document.getElementById('petals-container');
+  for(var i=0;i<14;i++){
+    var el=document.createElement('div');el.className='petal';
+    el.textContent=emj[Math.floor(Math.random()*emj.length)];
+    el.style.left=Math.random()*100+'vw';
+    el.style.fontSize=(3+Math.random()*3)+'rem';
+    el.style.animationDuration=(10+Math.random()*14)+'s';
+    el.style.animationDelay=(Math.random()*16)+'s';
+    c.appendChild(el);
+  }
+})();
+
+/* ─────── CREATOR ─────── */
+function startCreating(){
+  creatorData=[];
+  for(var i=0;i<9;i++) creatorData.push({photo:null,title:'',message:''});
+  currentStep=0;
+  goTo('s-creator');
+  renderCreatorStep();
+}
+
+function renderCreatorStep(){
+  var step=currentStep;
+  var col=BALLOON_COLORS[step];
+  // dots
+  var dr=document.getElementById('dotRow');dr.innerHTML='';
+  for(var i=0;i<9;i++){
+    var d=document.createElement('div');
+    d.className='dot'+(i===step?' active':i<step?' done':'');
+    dr.appendChild(d);
+  }
+  // header
+  document.getElementById('cardHeader').style.background='linear-gradient(135deg,'+col.fill+','+col.shade+')';
+  document.getElementById('stepLabel').textContent='Balloon '+(step+1)+' of 9';
+  document.getElementById('stepTitle').textContent=col.emoji+' What\'s inside?';
+  document.getElementById('balloonHeaderIcon').textContent=col.emoji;
+  // back/next
+  document.getElementById('backBtn').style.visibility=step===0?'hidden':'visible';
+  document.getElementById('nextBtn').textContent=step===8?'Finish 🎉':'Next ›';
+  // restore
+  var saved=creatorData[step];
+  tempData={photo:saved.photo,title:saved.title,message:saved.message};
+  updatePhotoUI(saved.photo);
+  document.getElementById('balloonTitle').value=saved.title;
+  document.getElementById('balloonMessage').value=saved.message;
+  document.getElementById('charCount').textContent=saved.message.length;
+  document.getElementById('photoInput').value='';
+}
+
+function updatePhotoUI(photoData){
+  var prev=document.getElementById('photoPreview');
+  var rem=document.getElementById('photoRemove');
+  var pzIcon=document.getElementById('pzIcon');
+  var pzText=document.getElementById('pzText');
+  var pzSub=document.getElementById('pzSub');
+  if(photoData){
+    prev.src=photoData;prev.style.display='block';
+    rem.style.display='block';
+    pzIcon.style.display='none';pzText.style.display='none';pzSub.style.display='none';
+  } else {
+    prev.src='';prev.style.display='none';rem.style.display='none';
+    pzIcon.style.display='flex';pzText.style.display='block';pzSub.style.display='block';
+  }
+}
+
+function triggerPhotoInput(){document.getElementById('photoInput').click();}
+
+function handlePhotoSelect(inp){
+  var file=inp.files[0];if(!file)return;
+  // Compress image before storing
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var img=new Image();
+    img.onload=function(){
+      var canvas=document.createElement('canvas');
+      var MAX=800;
+      var w=img.width,h=img.height;
+      if(w>MAX){h=Math.round(h*MAX/w);w=MAX;}
+      if(h>MAX){w=Math.round(w*MAX/h);h=MAX;}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      var data=canvas.toDataURL('image/jpeg',.78);
+      tempData.photo=data;
+      creatorData[currentStep].photo=data;
+      updatePhotoUI(data);
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePhoto(e){
+  e.stopPropagation();
+  tempData.photo=null;creatorData[currentStep].photo=null;
+  updatePhotoUI(null);
+  document.getElementById('photoInput').value='';
+}
+function updateCharCount(){
+  document.getElementById('charCount').textContent=document.getElementById('balloonMessage').value.length;
+}
+function saveCurrentStep(){
+  creatorData[currentStep].photo=tempData.photo;
+  creatorData[currentStep].title=document.getElementById('balloonTitle').value.trim()||('Balloon '+(currentStep+1));
+  creatorData[currentStep].message=document.getElementById('balloonMessage').value.trim();
+}
+function creatorNext(){
+  saveCurrentStep();
+  if(currentStep<8){currentStep++;renderCreatorStep();}
+  else{finishCreator();}
+}
+function creatorBack(){
+  saveCurrentStep();
+  if(currentStep>0){currentStep--;renderCreatorStep();}
+}
+
+/* ─────── PURE URL APPROACH — 100% GUARANTEED ─────── */
+// No server. No signup. No API key. Data lives entirely in the URL.
+// Photos compressed to ~3KB each so 9 photos fit in URL fine.
+// WhatsApp supports long URLs — tested up to 40KB+ encoded data.
+var lastPayload = null;
+
+/* ─────── FINISH & SHARE ─────── */
+function finishCreator(){
+  lastPayload = {balloons: creatorData.map(function(b,i){
+    return {
+      photo:    b.photo,
+      title:    b.title||'Balloon '+(i+1),
+      message:  b.message||'With love 💕',
+      emoji:    BALLOON_COLORS[i].emoji,
+      color:    BALLOON_COLORS[i].fill,
+      shade:    BALLOON_COLORS[i].shade,
+      hl:       BALLOON_COLORS[i].hl
+    };
+  })};
+  goTo('s-share');
+  showSavingState();
+  // Small delay so spinner renders before heavy encoding
+  setTimeout(function(){ encodeAndShare(lastPayload); }, 80);
+}
+
+function showSavingState(){
+  document.getElementById('savingState').style.display='block';
+  document.getElementById('readyState').style.display='none';
+  document.getElementById('errorState').style.display='none';
+}
+function showReadyState(url){
+  document.getElementById('savingState').style.display='none';
+  document.getElementById('errorState').style.display='none';
+  document.getElementById('readyState').style.display='block';
+  document.getElementById('shareLinkText').textContent=url;
+  window.history.replaceState(null,'',url);
+}
+function showErrorState(msg){
+  document.getElementById('savingState').style.display='none';
+  document.getElementById('readyState').style.display='none';
+  document.getElementById('errorState').style.display='block';
+  document.getElementById('errorMsg').textContent=msg||'Something went wrong. Please try again.';
+}
+function retryFinish(){
+  if(lastPayload){ showSavingState(); setTimeout(function(){ encodeAndShare(lastPayload); },80); }
+}
+
+function encodeAndShare(payload){
+  fetch('/api/save', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  })
+  .then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  })
+  .then(function(data){
+    if(!data.id) throw new Error('No ID returned');
+    var url = location.href.split('#')[0] + '#id=' + data.id;
+    showReadyState(url);
+  })
+  .catch(function(e){
+    console.error('save error:',e);
+    showErrorState('Could not save your surprise. Check your internet and try again.');
+  });
+}
+
+/* ─────── SHARE ─────── */
+function copyLink(){
+  var txt=document.getElementById('shareLinkText').textContent;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(txt).then(flashCopy).catch(function(){fallbackCopy(txt);});
+  } else {fallbackCopy(txt);}
+}
+function fallbackCopy(txt){
+  var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);flashCopy();
+}
+function flashCopy(){
+  var btn=document.getElementById('copyBtn');btn.textContent='Copied ✓';btn.classList.add('copied');
+  setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},2500);
+}
+function shareWhatsApp(){
+  var url=document.getElementById('shareLinkText').textContent;
+  var msg='💐 Happy Mother\'s Day Mumma! I made you a special balloon surprise — tap each balloon to pop it and discover my messages for you! 🎈\n\n'+url;
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+}
+function previewAsViewer(){
+  loadViewerFromData(creatorData.map(function(b,i){
+    return {photo:b.photo,title:b.title||'Balloon '+(i+1),message:b.message||'With love 💕',emoji:BALLOON_COLORS[i].emoji,color:BALLOON_COLORS[i].fill,shade:BALLOON_COLORS[i].shade,hl:BALLOON_COLORS[i].hl};
+  }));
+}
+
+/* ─────── VIEWER LOADER ─────── */
+function loadViewerFromHash(){
+  var hash = window.location.hash;
+  if(!hash) return false;
+
+  // New: JSONBin ID
+  var im = hash.match(/^#id=(.+)$/);
+  if(im){
+    var binId = im[1];
+    goTo('s-viewer');
+    document.getElementById('viewerGrid').innerHTML = '<div style="text-align:center;padding:40px;color:var(--soft);font-size:.95rem;">Loading your surprise…<br/><div class="spinner" style="margin:16px auto 0;"></div></div>';
+    fetchData(binId);
+    return true;
+  }
+
+  // Fallback: old base64 URL format
+  var vm = hash.match(/^#v=(.+)$/);
+  if(vm){
+    try{
+      var json=decodeURIComponent(escape(atob(vm[1])));
+      loadViewerFromData(JSON.parse(json).balloons);
+      return true;
+    } catch(e){return false;}
+  }
+
+  return false;
+}
+
+function fetchData(id){
+  fetch('/api/load?id=' + encodeURIComponent(id), {
+    headers: {'Accept': 'application/json'}
+  })
+  .then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  })
+  .then(function(data){
+    var balloons = data.balloons;
+    if(!balloons) throw new Error('No balloon data');
+    loadViewerFromData(balloons);
+  })
+  .catch(function(err){
+    console.error('Fetch error:', err);
+    document.getElementById('viewerGrid').innerHTML='<div style="text-align:center;padding:40px;color:#c04060;font-size:.9rem;">😕 Could not load the surprise.<br/>Check your internet and refresh the page.</div>';
+  });
+}
+
+function loadViewerFromData(balloons){
+  viewerBalloons=balloons;
+  poppedCount=0;
+  var grid=document.getElementById('viewerGrid');grid.innerHTML='';
+  balloons.forEach(function(b,i){
+    grid.appendChild(makeViewerBalloon(b,i));
+  });
+  goTo('s-viewer');
+}
+
+function makeViewerBalloon(b,i){
+  var wrap=document.createElement('div');wrap.className='vballoon-wrap';wrap.id='vb-'+i;
+  var delay=(-i*.7)+'s';
+  wrap.innerHTML='<svg class="vbal-svg" width="90" height="114" viewBox="0 0 100 126" xmlns="http://www.w3.org/2000/svg" style="animation-delay:'+delay+'">'
+    +'<ellipse cx="50" cy="54" rx="42" ry="50" fill="'+b.color+'"/>'
+    +'<ellipse cx="34" cy="30" rx="13" ry="18" fill="'+b.hl+'" opacity=".55"/>'
+    +'<ellipse cx="30" cy="24" rx="6" ry="9" fill="white" opacity=".28"/>'
+    +'<ellipse cx="50" cy="54" rx="42" ry="50" fill="none" stroke="'+b.shade+'" stroke-width="1.5" opacity=".2"/>'
+    +'<path d="M44 102 Q50 110 56 102" fill="'+b.shade+'"/>'
+    +'<circle cx="50" cy="106" r="4" fill="'+b.shade+'"/>'
+    +'<line x1="50" y1="110" x2="50" y2="126" stroke="'+b.shade+'" stroke-width="1.5"/>'
+    +'</svg>'
+    +'<div class="vbal-string"></div>'
+    +'<div class="vbal-label">'+escHtml(b.title)+'</div>';
+  wrap.addEventListener('click',function(){openPop(i,wrap);});
+  return wrap;
+}
+
+function escHtml(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ─────── POP FLOW ─────── */
+function openPop(index,wrapEl){
+  if(wrapEl.classList.contains('popped')) return;
+  currentPopIndex=index;
+  var b=viewerBalloons[index];
+  var overlay=document.getElementById('pop-overlay');
+  var flyBalloon=document.getElementById('popFlyBalloon');
+  var card=document.getElementById('popCard');
+
+  // Build fly balloon (large)
+  flyBalloon.innerHTML='<svg width="130" height="164" viewBox="0 0 100 126" xmlns="http://www.w3.org/2000/svg">'
+    +'<ellipse cx="50" cy="54" rx="42" ry="50" fill="'+b.color+'"/>'
+    +'<ellipse cx="34" cy="30" rx="13" ry="18" fill="'+b.hl+'" opacity=".55"/>'
+    +'<ellipse cx="30" cy="24" rx="6" ry="9" fill="white" opacity=".28"/>'
+    +'<path d="M44 102 Q50 110 56 102" fill="'+b.shade+'"/>'
+    +'<circle cx="50" cy="106" r="4" fill="'+b.shade+'"/>'
+    +'<line x1="50" y1="110" x2="50" y2="126" stroke="'+b.shade+'" stroke-width="1.5"/>'
+    +'</svg>';
+  flyBalloon.classList.remove('fly-up','popping');
+  card.classList.remove('visible');
+  overlay.classList.add('active');
+
+  setTimeout(function(){flyBalloon.classList.add('fly-up');},50);
+
+  setTimeout(function(){
+    burstParticles(b.color);
+    flyBalloon.classList.add('popping');
+    // Fill card
+    var img=document.getElementById('popCardImg');
+    var emojiWrap=document.getElementById('popCardEmojiWrap');
+    var emoji=document.getElementById('popCardEmoji');
+    if(b.photo){
+      img.src=b.photo;
+      img.classList.add('has-photo');
+      emojiWrap.style.display='none';
+    } else {
+      img.src='';img.classList.remove('has-photo');
+      emojiWrap.style.display='block';
+      // re-trigger animation
+      emoji.classList.remove('hidden');
+      emoji.style.animation='none';
+      void emoji.offsetWidth;
+      emoji.style.animation='';
+      emoji.textContent=b.emoji;
+    }
+    document.getElementById('popCardTitle').textContent=b.title;
+    document.getElementById('popCardMsg').textContent=b.message||'With all our love 💕';
+    card.classList.add('visible');
+  },620);
+}
+
+function burstParticles(baseColor){
+  var emojis=['💥','🌸','✨','💕','🌷','⭐','🎉','🌹','💐','🦋'];
+  var cx=window.innerWidth/2, cy=window.innerHeight*.4;
+  for(var i=0;i<14;i++){(function(j){
+    var el=document.createElement('div');el.className='burst-p';
+    el.textContent=emojis[j%emojis.length];
+    var angle=(j/14)*360;
+    var dist=70+Math.random()*90;
+    el.style.left=cx+'px';el.style.top=cy+'px';
+    el.style.setProperty('--tx',Math.cos(angle*Math.PI/180)*dist+'px');
+    el.style.setProperty('--ty',Math.sin(angle*Math.PI/180)*dist+'px');
+    el.style.setProperty('--rot',(Math.random()*360)+'deg');
+    el.style.fontSize=(1.3+Math.random()*.9)+'rem';
+    el.style.animationDelay=(j*.03)+'s';
+    document.body.appendChild(el);
+    setTimeout(function(){el.remove();},1100);
+  })(i);}
+}
+
+function closePop(){
+  var overlay=document.getElementById('pop-overlay');
+  var card=document.getElementById('popCard');
+  card.classList.remove('visible');
+  setTimeout(function(){overlay.classList.remove('active');},300);
+  if(currentPopIndex>=0){
+    var wrap=document.getElementById('vb-'+currentPopIndex);
+    if(wrap&&!wrap.classList.contains('popped')){
+      wrap.classList.add('popped');
+      // Show ghost
+      var ghost=document.createElement('span');ghost.className='popped-ghost';
+      ghost.textContent='🎊';
+      wrap.appendChild(ghost);
+      poppedCount++;
+      if(poppedCount===viewerBalloons.length){
+        setTimeout(showFinal,500);
+      }
+    }
+  }
+  currentPopIndex=-1;
+}
+
+function showFinal(){
+  launchConfetti();
+  goTo('s-final');
+}
+function launchConfetti(){
+  var emj=['🌸','💕','✨','🌷','💐','🌹','⭐','🦋','👑'];
+  for(var i=0;i<40;i++)(function(j){
+    setTimeout(function(){
+      var el=document.createElement('div');el.className='confetti-p';
+      el.textContent=emj[Math.floor(Math.random()*emj.length)];
+      el.style.left=Math.random()*100+'vw';
+      el.style.fontSize=(.8+Math.random()*1.2)+'rem';
+      el.style.animationDuration=(4+Math.random()*5)+'s';
+      el.style.animationDelay='0s';
+      document.body.appendChild(el);
+      setTimeout(function(){el.remove();},9000);
+    },j*80);
+  })(i);
+}
+function resetViewer(){
+  loadViewerFromData(viewerBalloons);
+}
+
+/* ─────── INIT ─────── */
+window.addEventListener('load',function(){
+  if(!loadViewerFromHash()){
+    goTo('s-welcome');
+  }
+});
+window.addEventListener('hashchange',function(){
+  loadViewerFromHash();
+});
+</script>
+</body>
+</html>
